@@ -24,7 +24,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout: null = null;
             const initialQuantity: any = 100;
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity as BigNumber); }, Error("Amount must be an instance of BigNumber"));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity as BigNumber); }, Error);
         });
         it("Throws with initial quantity too large", () => {
             const ticker: null = null;
@@ -34,7 +34,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("18446744073709551616");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("Maximum genesis value exceeded. Reduce input quantity below 18446744073709551615."));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws with negative initial quantity", () => {
             const ticker: null = null;
@@ -44,7 +44,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("-1");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("Genesis quantity must be greater than 0."));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws with a decimal initial quantity", () => {
             const ticker: null = null;
@@ -54,7 +54,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("1.1");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("Genesis quantity must be a whole number."));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws when allocated OP_RETURN space is exceeded", () => {
             const ticker = "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
@@ -64,7 +64,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("Script too long, must be less than 223 bytes."));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Succeeds with batonVout is 2 and max inital quantity is used", () => {
             const ticker = null;
@@ -85,7 +85,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout = 1;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("Baton vout must a number and greater than 1 and less than 256."));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws when batonVout is less than 2", () => {
             const ticker: null = null;
@@ -95,7 +95,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout = 0;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("Baton vout must a number and greater than 1 and less than 256."));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws when batonVout is less than 2", () => {
             const ticker: null = null;
@@ -105,7 +105,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout = -1;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("Baton vout must a number and greater than 1 and less than 256."));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws when batonVout is greater than 255", () => {
             const ticker: null = null;
@@ -115,7 +115,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout = 256;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("Baton vout must a number and greater than 1 and less than 256."));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws when decimals is too high", () => {
             const ticker: null = null;
@@ -125,7 +125,7 @@ describe("SlpTokenType1", () => {
             const decimals = 10;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("Decimals property must be in range 0 to 9"));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws when decimals is negative", () => {
             const ticker: null = null;
@@ -135,7 +135,7 @@ describe("SlpTokenType1", () => {
             const decimals = -1;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("Decimals property must be in range 0 to 9"));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws when decimals is null", () => {
             const ticker: null = null;
@@ -145,7 +145,7 @@ describe("SlpTokenType1", () => {
             const decimals: any = null;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals as number, batonVout, initialQuantity); }, Error("Decimals property must be in range 0 to 9"));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals as number, batonVout, initialQuantity); }, Error);
         });
         it("Throws when initialQuantity is null", () => {
             const ticker: null = null;
@@ -155,7 +155,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout: null = null;
             const initialQuantity: any = null;
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity as BigNumber); }, Error("Amount must be an instance of BigNumber"));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity as BigNumber); }, Error);
         });
         it("Throws when documentUri is provided as Buffer", () => {
             const ticker: null = null;
@@ -165,7 +165,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex as string, decimals, batonVout, initialQuantity); }, Error("Document hash must be provided as a 64 character hex string"));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex as string, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws when documentUri is provided as non-hex string", () => {
             const ticker: null = null;
@@ -175,7 +175,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("Document hash must be provided as a 64 character hex string"));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws when ticker is not a string", () => {
             const ticker: any = ["a"];
@@ -185,7 +185,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker as string, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("ticker must be a string"));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker as string, name, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws when name is not a string", () => {
             const ticker: null = null;
@@ -195,7 +195,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name as string, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error("name must be a string"));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name as string, documentUri, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws when documentUri is not a string", () => {
             const ticker: null = null;
@@ -205,7 +205,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri as string, documentHashHex, decimals, batonVout, initialQuantity); }, Error("documentUri must be a string"));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri as string, documentHashHex, decimals, batonVout, initialQuantity); }, Error);
         });
         it("Throws when documentHashHex is not a string", () => {
             const ticker: null = null;
@@ -215,7 +215,7 @@ describe("SlpTokenType1", () => {
             const decimals = 0;
             const batonVout: null = null;
             const initialQuantity = new BigNumber("18446744073709551615");
-            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex as string, decimals, batonVout, initialQuantity); }, Error("Document hash must be provided as a 64 character hex string"));
+            assert.throws(function () { SlpTokenType1.buildGenesisOpReturn(ticker, name, documentUri, documentHashHex as string, decimals, batonVout, initialQuantity); }, Error);
         });
     });
     describe("buildSendOpReturn()", () => {
@@ -249,12 +249,12 @@ describe("SlpTokenType1", () => {
                                     new BigNumber("66"), new BigNumber("99"), new BigNumber("99"), new BigNumber("99"), new BigNumber("99"),
                                     new BigNumber("66"), new BigNumber("99"), new BigNumber("99"), new BigNumber("99"), new BigNumber("99"),
                                     new BigNumber("66"), new BigNumber("99"), new BigNumber("99"), new BigNumber("99"), new BigNumber("99") ];
-            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex, outputQtyArray);} , Error("Cannot have more than 19 SLP token outputs."));
+            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex, outputQtyArray);} , Error);
         });
         it("Throws with 0 outputs", () => {
             const tokenIdHex = "8888888888888888888888888888888888888888888888888888888888888888";
             const outputQtyArray: any[] = [];
-            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex, outputQtyArray);}, Error("Cannot have less than 1 SLP token output."));
+            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex, outputQtyArray);}, Error);
         });
         it("Throws with null outputs", () => {
             const tokenIdHex = "8888888888888888888888888888888888888888888888888888888888888888";
@@ -269,27 +269,27 @@ describe("SlpTokenType1", () => {
         it("Throws with tokenIdHex too short", () => {
             const tokenIdHex = "88888888888888888888888888888888888888888888888888888888888888";
             const outputQtyArray = [ new BigNumber("66") ];
-            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex, outputQtyArray);}, Error("TokenIdHex must be provided as a 64 character hex string."));
+            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex, outputQtyArray);}, Error);
         });
         it("Throws with tokenIdHex too long", () => {
             const tokenIdHex = "888888888888888888888888888888888888888888888888888888888888888888";
             const outputQtyArray = [ new BigNumber("66") ];
-            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex, outputQtyArray);}, Error("TokenIdHex must be provided as a 64 character hex string."));
+            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex, outputQtyArray);}, Error);
         });
         it("Throws with tokenIdHex non-hex string", () => {
             const tokenIdHex = "zz88888888888888888888888888888888888888888888888888888888888888";
             const outputQtyArray = [ new BigNumber("66") ];
-            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex, outputQtyArray);}, Error("TokenIdHex must be provided as a 64 character hex string."));
+            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex, outputQtyArray);}, Error);
         });
         it("Throws with tokenIdHex not a string", () => {
             const tokenIdHex: any = 1;
             const outputQtyArray = [ new BigNumber("66") ];
-            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex as string, outputQtyArray);}, Error("TokenIdHex must be provided as a 64 character hex string."));
+            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex as string, outputQtyArray);}, Error);
         });
         it("Throws with tokenIdHex not as null", () => {
             const tokenIdHex: any = null;
             const outputQtyArray = [ new BigNumber("66") ];
-            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex as string, outputQtyArray);}, Error("TokenIdHex must be provided as a 64 character hex string."));
+            assert.throws(() => {SlpTokenType1.buildSendOpReturn(tokenIdHex as string, outputQtyArray);}, Error);
         });
     });
     describe("buildMintOpReturn()", () => {
@@ -314,79 +314,79 @@ describe("SlpTokenType1", () => {
             const batonVout = 1;
             const mintQuantity = new BigNumber("66");
             //SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity)
-            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error("Baton vout must a number and greater than 1 and less than 256."));
+            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error);
         });
         it("Throws when batonVout is 256", () => {
             const tokenIdHex = "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
             const batonVout = 256;
             const mintQuantity = new BigNumber("66");
-            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error("Baton vout must a number and greater than 1 and less than 256."));
+            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error);
         });
         it("Throws when mintQuantity is a number", () => {
             const tokenIdHex = "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
             const batonVout: null = null;
             const mintQuantity: any = 1;
-            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity as BigNumber);}, Error("Amount must be an instance of BigNumber"));
+            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity as BigNumber);}, Error);
         });
         it("Throws when mintQuantity is null", () => {
             const tokenIdHex = "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
             const batonVout: null = null;
             const mintQuantity: any = null;
-            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity as BigNumber);}, Error("Amount must be an instance of BigNumber"));
+            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity as BigNumber);}, Error);
         });
         it("Throws when mintQuantity is too large", () => {
             const tokenIdHex = "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
             const batonVout: null = null;
             const mintQuantity = new BigNumber("18446744073709551616");
-            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error("Maximum mint value exceeded. Reduce input quantity below 18446744073709551615."));
+            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error);
         });
         it("Throws when mintQuantity is negative", () => {
             const tokenIdHex = "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
             const batonVout: null = null;
             const mintQuantity = new BigNumber("-1");
-            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error("Mint quantity must be greater than 0."));
+            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error);
         });
         it("Throws when mintQuantity is decimal", () => {
             const tokenIdHex = "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
             const batonVout: null = null;
             const mintQuantity = new BigNumber("1.1");
-            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error("Mint quantity must be a whole number."));
+            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error);
         });
         it("Throws when mintQuantity is array", () => {
             const tokenIdHex = "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
             const batonVout: null = null;
             const mintQuantity: any = [ new BigNumber("1") ];
-            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity as BigNumber);}, Error("Amount must be an instance of BigNumber"));
+            assert.throws(() =>{SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity as BigNumber);}, Error);
         });
         it("Throws with tokenIdHex too short", () => {
             const tokenIdHex = "888888888888888888888888888888888888888888888888888888888888";
             const batonVout: null = null;
             const mintQuantity = new BigNumber("66");
-            assert.throws(() => {SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error("TokenIdHex must be provided as a 64 character hex string."));
+            assert.throws(() => {SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error);
         });
         it("Throws with tokenIdHex too long", () => {
             const tokenIdHex = "888888888888888888888888888888888888888888888888888888888888888888";
             const batonVout: null = null;
             const mintQuantity = new BigNumber("66");
-            assert.throws(() => {SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error("TokenIdHex must be provided as a 64 character hex string."));
+            assert.throws(() => {SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error);
         });
         it("Throws with tokenIdHex non-hex string", () => {
             const tokenIdHex = "zz88888888888888888888888888888888888888888888888888888888888888";
             const batonVout: null = null;
             const mintQuantity = new BigNumber("66");
-            assert.throws(() => {SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error("TokenIdHex must be provided as a 64 character hex string."));
+            assert.throws(() => {SlpTokenType1.buildMintOpReturn(tokenIdHex, batonVout, mintQuantity);}, Error);
         });
         it("Throws with tokenIdHex not a string", () => {
             const tokenIdHex: any = 1;
             const batonVout: null = null;
             const mintQuantity = new BigNumber("66");
-            assert.throws(() => {SlpTokenType1.buildMintOpReturn(tokenIdHex as string, batonVout, mintQuantity);}, Error("TokenIdHex must be provided as a 64 character hex string."));
+            assert.throws(() => {SlpTokenType1.buildMintOpReturn(tokenIdHex as string, batonVout, mintQuantity);}, Error);
         });
         it("Throws with tokenIdHex not as null", () => {
             const tokenIdHex: any = null;
             const batonVout: null = null;
             const mintQuantity = new BigNumber("66");
-            assert.throws(() => {SlpTokenType1.buildMintOpReturn(tokenIdHex as string, batonVout, mintQuantity);}, Error("TokenIdHex must be provided as a 64 character hex string."));
+            assert.throws(() => {SlpTokenType1.buildMintOpReturn(tokenIdHex as string, batonVout, mintQuantity);}, Error);
         });
     });
 });
